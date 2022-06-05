@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package api.healthz.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "module4/api/healthz/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.healthz.v1";
+
+service Monitor {
+	rpc CheckHealth (CheckHealthRequest) returns (CheckHealthReply){
+		option (google.api.http) = {
+			get: "/checkhealth"
+		  };
+	};
+}
+
+message CheckHealthRequest {
+	string message = 1;
+}
+message CheckHealthReply {
+	string message = 1;
+}

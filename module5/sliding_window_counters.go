@@ -56,7 +56,7 @@ func (l *SlidingWindow) AllowRequest() bool {
 	if len(l.slots) > 0 {
 		last = l.slots[len(l.slots)-1]
 		if last.timestamp.Add(l.SlotDuration).Before(now) {
-			// 如果当前时间已经超过这个时间插槽的跨度，那么新建一个时间插槽
+			// 判断现在是否已超出最后一个时间戳的时间跨度 如超出 则新建
 			last = &slot{timestamp: now, count: 1}
 			l.slots = append(l.slots, last)
 		} else {
